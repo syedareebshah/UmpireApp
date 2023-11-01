@@ -4,31 +4,55 @@ import {UserState} from '../../model/reducers/types';
 
 const initialState: UserState = {
   name: '',
+  oversCount: 0,
+  scoreCount: 0,
+  wicketCount: 0,
   loggedIn: false,
+  overHistory: [],
 };
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    userName: (state, action) => {
+    teamName: (state, action) => {
       return {
         ...state,
         name: action.payload?.name,
       };
     },
-    logout: state => {
-      return initialState;
-    },
-    onLogin: (state, action) => {
+    setOverCount: (state, action) => {
       return {
         ...state,
-        loggedIn: true,
-        ...action.payload,
+        oversCount: action.payload?.oversCount,
+      };
+    },
+    setOverHistory: (state, action) => {
+      return {
+        ...state,
+        overHistory: action.payload?.overHistory,
+      };
+    },
+    setScoreCount: (state, action) => {
+      return {
+        ...state,
+        scoreCount: action.payload?.scoreCount,
+      };
+    },
+    setWicketCount: (state, action) => {
+      return {
+        ...state,
+        wicketCount: action.payload?.wicketCount,
       };
     },
   },
 });
 
-export const {userName, logout, onLogin} = userSlice.actions;
+export const {
+  teamName,
+  setOverCount,
+  setOverHistory,
+  setScoreCount,
+  setWicketCount,
+} = userSlice.actions;
 
 export default userSlice.reducer;

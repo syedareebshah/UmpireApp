@@ -1,35 +1,40 @@
 import React, {useEffect, useState} from 'react';
-import {
-  I18nManager,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Alert, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {useStyle} from './styles';
 import {useNavigation} from '@react-navigation/native';
-import {useTranslation} from 'react-i18next';
-import {useTheme} from 'react-native-paper';
+import Icon from 'react-native-vector-icons/Entypo';
+import Cricket from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch, useSelector} from 'react-redux';
-import {s} from 'react-native-size-matters';
-import {RootState} from 'store/slice';
-import {logout, userName} from 'store/slice/userSlice';
+import {setOverCount, setOverHistory} from 'store/slice/userSlice';
+
 const Home = () => {
-  const {t, i18n} = useTranslation();
   const navigation = useNavigation();
   const styles = useStyle();
   const [over, setOver] = useState<any>([]);
   const [ballCount, setBallCount] = useState(0);
   const [disableBall, setDisableBall] = useState(false);
-  console.log({over});
-
+  const oversCount = useSelector((data: any) => data.user.oversCount);
+  const name = useSelector((data: any) => data.user.name);
+  const oversHistory = useSelector((data: any) => data.user.overHistory);
+  const [wicketCount, setWicketCount] = useState(0);
+  const dispatch = useDispatch();
   useEffect(() => {
     if (ballCount === 6) {
       setDisableBall(true);
+      dispatch(setOverCount({oversCount: 1}));
+      dispatch(
+        setOverHistory({
+          overHistory: !oversHistory
+            ? [{overNumber: oversCount, detail: over}]
+            : [...oversHistory, {overNumber: oversCount, detail: over}],
+        }),
+      );
+      showAlert();
     } else {
       setDisableBall(false);
     }
   }, [ballCount]);
+  console.log({oversHistory: oversHistory[4]?.detail});
 
   const onBall = (ball: any) => {
     console.log({ball});
@@ -61,9 +66,11 @@ const Home = () => {
           score: 0,
           display: 'W',
           extra: false,
+          wicket: true,
         },
       ]);
       setBallCount(ballCount + 1);
+      setWicketCount(wicketCount + 1);
     } else if (ball == 1) {
       setOver([
         ...over,
@@ -71,9 +78,11 @@ const Home = () => {
           score: 1,
           display: '1W',
           extra: false,
+          wicket: true,
         },
       ]);
       setBallCount(ballCount + 1);
+      setWicketCount(wicketCount + 1);
     } else if (ball == 2) {
       setOver([
         ...over,
@@ -81,9 +90,11 @@ const Home = () => {
           score: 2,
           display: '2W',
           extra: false,
+          wicket: true,
         },
       ]);
       setBallCount(ballCount + 1);
+      setWicketCount(wicketCount + 1);
     } else if (ball == 3) {
       setOver([
         ...over,
@@ -91,9 +102,11 @@ const Home = () => {
           score: 3,
           display: '3W',
           extra: false,
+          wicket: true,
         },
       ]);
       setBallCount(ballCount + 1);
+      setWicketCount(wicketCount + 1);
     }
   };
 
@@ -143,17 +156,45 @@ const Home = () => {
     if (!over[data].extra) {
       setBallCount(ballCount - 1);
     }
+    if (over[data]?.wicket) {
+      setWicketCount(wicketCount - 1);
+    }
+
     let tempArray = newArray.splice(data, 1);
 
     setOver(newArray);
   };
+  const showAlert = () =>
+    Alert.alert('Done', 'Over Completed', [
+      {
+        text: 'Edit',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {text: 'OK', onPress: () => console.log('OK Pressed')},
+    ]);
 
   return (
     <View style={styles.container}>
-      <ScrollView style={{flex: 0.1}}>
-        <Text style={styles.textStyle}>
-          Score:{over.reduce((total: any, ball: any) => total + ball.score, 0)}
-        </Text>
+      <ScrollView style={{flex: 0.45}}>
+        <View style={styles.scoreCard}>
+          <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+            <Icon name="menu" size={30} color="white" />
+          </TouchableOpacity>
+          <Cricket name="sports-cricket" size={30} color="white" />
+
+          <Text style={styles.score}> </Text>
+        </View>
+        <View style={styles.scoreCard}>
+          <Text style={styles.team}>{name == '' ? 'untitled' : name}</Text>
+          <Text style={styles.score}>
+            {over.reduce((total: any, ball: any) => total + ball.score, 0)}-
+            {wicketCount}
+          </Text>
+          <Text style={styles.score}>
+            {oversCount}.{ballCount}
+          </Text>
+        </View>
 
         <Text style={styles.textStyle}>total Balls:{ballCount}</Text>
         <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>

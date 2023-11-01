@@ -12,6 +12,9 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import Login from 'screens/Login';
 import SignUp from 'screens/SignUp';
 import {RootState} from 'store/slice';
+import Home from 'screens/Home';
+import WelcomeScreen from 'screens/WelcomeScreen';
+import OversHistory from 'screens/OversHistory';
 
 const Stack = createNativeStackNavigator();
 const AppDrawer = createDrawerNavigator();
@@ -40,10 +43,9 @@ const LoggedInNavigator = () => {
           zIndex: 1,
         },
       }}>
-      <AppDrawer.Screen
-        name={'BottomTabNavigation'}
-        component={BottomTabNavigation}
-      />
+      <AppDrawer.Screen name={'About'} component={WelcomeScreen} />
+      <AppDrawer.Screen name={'Home'} component={Home} />
+      <AppDrawer.Screen name={'OversHistory'} component={OversHistory} />
     </AppDrawer.Navigator>
   );
 };
@@ -69,7 +71,7 @@ const App = () => {
         routeNameRef.current = currentRouteName;
       }}>
       <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
-      {isLoggedIn ? <LoggedInNavigator /> : <AuthStack />}
+      {true ? <LoggedInNavigator /> : <AuthStack />}
       {/* {isLoggedIn ? <BottomTabNavigation /> : <AuthStack />} */}
     </NavigationContainer>
   );

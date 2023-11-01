@@ -11,7 +11,6 @@ export const useStyle = () => {
       container: {
         flex: 1,
         justifyContent: 'space-between',
-        backgroundColor: theme.colors.background,
       },
       textStyle: {
         color: theme.colors.heading,
@@ -22,8 +21,8 @@ export const useStyle = () => {
         margin: 2,
         padding: 5,
         borderRadius: 20,
-        height: 35,
-        width: 35,
+        height: mvs(35),
+        width: mvs(35),
         alignItems: 'center',
         justifyContent: 'center',
       },
@@ -40,7 +39,7 @@ export const useStyle = () => {
         justifyContent: 'center',
       },
       controller: {
-        flex: 1,
+        flex: 0.55,
       },
       streight: {
         padding: ms(4),
@@ -61,6 +60,22 @@ export const useStyle = () => {
       streightBttnTxt: {
         fontSize: ms(18),
         padding: ms(10),
+      },
+      scoreCard: {
+        backgroundColor: 'green',
+        paddingHorizontal: 10,
+        paddingVertical: 15,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      },
+      team: {
+        fontWeight: '800',
+        color: 'white',
+      },
+      score: {
+        fontWeight: '500',
+        color: 'white',
       },
     });
   return styles();

@@ -45,14 +45,14 @@ export default function Drawer(props: any) {
           onPress={() => navigation.navigate('Home')}
         />
         <DrawerItemCard
+          title="Overs History"
+          iconSource={icons.aboutUsIcon}
+          onPress={() => navigation.navigate('OversHistory')}
+        />
+        <DrawerItemCard
           title="About"
           iconSource={icons.aboutUsIcon}
           onPress={() => navigation.navigate('About')}
-        />
-        <DrawerItemCard
-          title="Contact Us"
-          iconSource={icons.aboutUsIcon}
-          onPress={() => navigation.navigate('ContactUs')}
         />
       </DrawerContentScrollView>
     </View>
