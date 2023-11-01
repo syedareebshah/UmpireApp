@@ -1,0 +1,25 @@
+{
+  "AppName": "Company Needs",
+  "languages": {
+    "english": "English",
+    "arabic": "عربى"
+  },
+  "Login": {
+    "title": "تسجيل الدخول",
+    "description": "تسجيل الدخول إلى حسابك لعرض المنتجات",
+    "emailLb": "بريد إلكتروني",
+    "passwordLb": "كلمة المرور",
+    "error": "هناك خطأ ما",
+    "emailPlaceholder": "companyneeds@example.com",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "forgotLb": "هل نسيت كلمة السر؟",
+    "orButton": "أو",
+    "dontHaveAccountLb": "ليس لديك حساب؟",
+    "signUpBtn": "اشتراك",
+    "appleButtonLabel": "تسجيل الدخول مع أبل",
+    "googleButtonLabel": "الدخول مع جوجل"
+  },
+  "Home": {
+    "title": "مرحبا بكم الشاشة الرئيسية"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "AppName": "Company Needs",
+  "languages": {
+    "english": "English",
+    "arabic": "عربى"
+  },
+  "Login": {
+    "title": "Log in",
+    "description": "Welcome to Company Needs! Please login.",
+    "emailLb": "Email",
+    "passwordLb": "Password",
+    "error": "some thing went wrong",
+    "emailPlaceholder": "companyneeds@example.com",
+    "passwordPlaceholder": "xxxxxxxx",
+    "forgotLb": "Forget password?",
+    "dontHaveAccountLb": "Don’t have an account ?",
+    "signUpBtn": "Sign Up",
+    "orButton": "OR",
+    "appleButtonLabel": "Sign in with Apple",
+    "googleButtonLabel": "Sign in with Google"
+  },
+  "Home": {
+    "title": "Welcome Home Screen"
+  },
+  "ValidationSchema": {
+    "firstNameRequired": "Name is required",
+    "lastNameRequired": "Last name is required",
+    "emailRequired": "Email is required",
+    "passRequired": "Password is required",
+    "confirmNewPassRequired": "Confirm new password is required",
+    "emailNotValid": "Invalid email"
+  }
+}
